@@ -6,11 +6,11 @@ const NotFound = () => {
   const productId = pathname.split("/")[2];
   const reviewId = pathname.split("/")[4];
 
-  console.log(pathname);
-
   return (
     <div>
-      <h2>Review {reviewId} Not Found</h2>
+      <h2>
+        Review {reviewId} not found for product {productId}
+      </h2>
     </div>
   );
 };
