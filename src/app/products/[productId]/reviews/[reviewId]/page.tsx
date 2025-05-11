@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const ProductReview = async ({
   params,
@@ -8,7 +8,7 @@ const ProductReview = async ({
   const { productId, reviewId } = await params;
 
   if (parseInt(reviewId) > 1000) {
-    notFound();
+    redirect("/products");
   }
 
   return (
