@@ -1,6 +1,5 @@
 "use client";
 
-import "./styles.css";
 import { FC, PropsWithChildren, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
