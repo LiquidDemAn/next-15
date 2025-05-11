@@ -1,13 +1,14 @@
 import Link from "next/link";
+import { use } from "react";
 
 type Props = {
   params: Promise<{ articleId: string }>;
   searchParams: Promise<{ lang?: "en" | "es" | "fr" }>;
 };
 
-const NewsArticle = async ({ params, searchParams }: Props) => {
-  const { articleId } = await params;
-  const { lang = "en" } = await searchParams;
+const NewsArticle = ({ params, searchParams }: Props) => {
+  const { articleId } = use(params);
+  const { lang = "en" } = use(searchParams);
 
   return (
     <div>
