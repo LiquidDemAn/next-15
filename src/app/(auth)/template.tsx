@@ -1,7 +1,7 @@
 "use client";
 
 import "./styles.css";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,9 +13,17 @@ const navLinks = [
 
 const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
   const pathName = usePathname();
+  const [input, setInput] = useState("");
 
   return (
     <div>
+      <div>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </div>
       {navLinks.map(({ name, href }) => {
         const isActive =
           pathName === href || (pathName.startsWith(href) && href !== "/");
