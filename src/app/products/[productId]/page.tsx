@@ -1,18 +1,12 @@
-import { Metadata } from "next";
-
 type Props = {
   params: Promise<{ productId: string }>;
 };
 
-export const generateMetadata = async ({
-  params,
-}: Props): Promise<Metadata> => {
-  const { productId } = await params;
+export const dynamicParams = false;
 
-  return {
-    title: `Product ${productId}`,
-  };
-};
+export async function generateStaticParams() {
+  return [{ productId: "1" }, { productId: "2" }, { productId: "3" }];
+}
 
 const ProductDetails = async ({ params }: Props) => {
   const { productId } = await params;
