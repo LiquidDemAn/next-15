@@ -1,10 +1,9 @@
-"use client";
-
 import React from "react";
-import { serverSideFunction } from "@/utils/server-utils";
+import { clientSideFunction } from "@/utils/client-utils";
 
 function ClientRoute() {
-  const result = serverSideFunction();
+  // const result = serverSideFunction();
+  const result = clientSideFunction();
 
   return <div>ClientRoute: {result}</div>;
 }
