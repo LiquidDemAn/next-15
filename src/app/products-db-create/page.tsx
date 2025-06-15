@@ -1,45 +1,62 @@
-import { addProduct } from "@/prisma-db";
-import { redirect } from "next/navigation";
-import SubmitBtn from "@/components/SubmitBtn";
+"use client";
+
+import { useActionState } from "react";
+import { createProduct, FormState } from "@/actions/products";
 
 function ProductsDBCreatePage() {
-  async function createProduct(formData: FormData) {
-    "use server";
+  const initialState: FormState = {
+    errors: {},
+  };
 
-    const title = formData.get("title") as string;
-    const price = formData.get("price") as string;
-    const description = formData.get("description") as string;
-
-    await addProduct(title, parseInt(price), description);
-    redirect("/products-db");
-  }
+  const [{ errors }, formAction, isPending] = useActionState(
+    createProduct,
+    initialState,
+  );
 
   return (
-    <form action={createProduct} className="p-4 space-y-4 max-w-96">
-      <label className="text-white">
-        Title
-        <input
-          type="text"
-          className="block w-full p-2 text-black border rounded"
-          name="title"
-        />
-      </label>
-      <label className="text-white">
-        Price
-        <input
-          type="number"
-          className="block w-full p-2 text-black border rounded"
-          name="price"
-        />
-      </label>
-      <label className="text-white">
-        Description
-        <textarea
-          className="block w-full p-2 text-black border rounded"
-          name="description"
-        />
-      </label>
-      <SubmitBtn />
+    <form action={formAction} className="p-4 space-y-4 max-w-96">
+      <div>
+        <label className="text-white">
+          Title
+          <input
+            type="text"
+            className="block w-full p-2 text-black border rounded"
+            name="title"
+          />
+        </label>
+        {errors.title && <p className="text-red-500">{errors.title}</p>}
+      </div>
+      <div>
+        <label className="text-white">
+          Price
+          <input
+            type="number"
+            className="block w-full p-2 text-black border rounded"
+            name="price"
+          />
+        </label>
+        {errors.price && <p className="text-red-500">{errors.price}</p>}
+      </div>
+      <div>
+        <label className="text-white">
+          Description
+          <textarea
+            className="block w-full p-2 text-black border rounded"
+            name="description"
+          />
+        </label>
+        {errors.description && (
+          <p className="text-red-500">{errors.description}</p>
+        )}
+      </div>
+      {/*<SubmitBtn />*/}
+      <button
+        type="submit"
+        disabled={isPending}
+        className="block w-full p-2 text-white bg-blue-500 rounded disabled:bg-gray-500"
+      >
+        Submit
+      </button>
     </form>
   );
 }
