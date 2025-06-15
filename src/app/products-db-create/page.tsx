@@ -1,5 +1,6 @@
 import { addProduct } from "@/prisma-db";
 import { redirect } from "next/navigation";
+import SubmitBtn from "@/components/SubmitBtn";
 
 function ProductsDBCreatePage() {
   async function createProduct(formData: FormData) {
@@ -38,12 +39,7 @@ function ProductsDBCreatePage() {
           name="description"
         />
       </label>
-      <button
-        type="submit"
-        className="block w-full p-2 text-white bg-blue-500 rounded disabled:bg-gray-500"
-      >
-        Add Product
-      </button>
+      <SubmitBtn />
     </form>
   );
 }
