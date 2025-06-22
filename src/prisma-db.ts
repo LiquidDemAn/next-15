@@ -48,6 +48,7 @@ export async function updateProduct(
   description: string,
 ) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
+
   return prisma.product.update({
     where: { id },
     data: { title, price, description },
@@ -56,6 +57,7 @@ export async function updateProduct(
 
 export async function deleteProduct(id: number) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
+
   return prisma.product.delete({
     where: { id },
   });
