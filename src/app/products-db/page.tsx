@@ -8,8 +8,14 @@ export type Product = {
   description: string | null;
 };
 
-async function ProductsDBPage() {
-  const products: Product[] = await getProducts();
+type Props = {
+  searchParams: Promise<{ query?: string }>;
+};
+
+async function ProductsDBPage({ searchParams }: Props) {
+  const { query } = await searchParams;
+
+  const products: Product[] = await getProducts(query);
 
   return <ProductDetails products={products} />;
 }

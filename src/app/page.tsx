@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Search from "@/components/Search";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <Link href="/products">Products</Link>
       <Link href="/articles/breaking-news-123?lang=en">Read in English</Link>
       <Link href="/articles/breaking-news-123?lang=fr">Read in French</Link>
+      <Search />
     </>
   );
 };
