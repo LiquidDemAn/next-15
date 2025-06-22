@@ -3,6 +3,7 @@ import "./global.css";
 import { Metadata } from "next";
 import ThemeProvider from "@/components/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Navigation } from "@/components/Navigation";
 
 export const metadata: Metadata = {
   title: {
@@ -22,14 +23,7 @@ export default function RootLayout({
       <html lang="en">
         <ThemeProvider>
           <body>
-            <header
-              style={{
-                backgroundColor: "lightgray",
-                padding: "1rem",
-              }}
-            >
-              <p>Header</p>
-            </header>
+            <Navigation />
             {children}
             <footer
               style={{
