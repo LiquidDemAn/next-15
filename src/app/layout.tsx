@@ -2,6 +2,7 @@ import "./global.css";
 
 import { Metadata } from "next";
 import ThemeProvider from "@/components/ThemeProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: {
@@ -17,28 +18,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <ThemeProvider>
-        <body>
-          <header
-            style={{
-              backgroundColor: "lightgray",
-              padding: "1rem",
-            }}
-          >
-            <p>Header</p>
-          </header>
-          {children}
-          <footer
-            style={{
-              backgroundColor: "ghostwhite",
-              padding: "1rem",
-            }}
-          >
-            <p>Footer</p>
-          </footer>
-        </body>
-      </ThemeProvider>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <ThemeProvider>
+          <body>
+            <header
+              style={{
+                backgroundColor: "lightgray",
+                padding: "1rem",
+              }}
+            >
+              <p>Header</p>
+            </header>
+            {children}
+            <footer
+              style={{
+                backgroundColor: "ghostwhite",
+                padding: "1rem",
+              }}
+            >
+              <p>Footer</p>
+            </footer>
+          </body>
+        </ThemeProvider>
+      </html>
+    </ClerkProvider>
   );
 }
